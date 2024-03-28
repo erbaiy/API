@@ -1,9 +1,8 @@
-name: HELO WORLD
+name: HELLO WORLD
 
 on:
   push:
     branches: [main]
-
   pull_request:
     branches: [main]
 
@@ -13,4 +12,4 @@ jobs:
 
     steps:
       - name: hello Step
-      - run: echo " a one-line script"
+        run: echo "a one-line script"
