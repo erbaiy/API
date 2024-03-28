@@ -1,0 +1,16 @@
+name: HELO WORLD
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: hello Step
+      - run: echo " a one-line script"

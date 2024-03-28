@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -23,21 +25,27 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['message' => 'Identifiants invalides'], 401);
         }
 
-        // $user=User::where('email',$request->email)->first();
+        $user = Auth::user();
+        //create a token for the user
+        $token = $user->createToken('token')->plainTextToken;
+        // restar the token inide the cookies
+        $cookie = cookie('jwt', $token, 24 * 60);
 
-        // if (!$user || !Hash::check($request->password,$user->password)) {
-        //     return response() -> json(['message'=>'Invalid credentials'],401);
-        // }
 
-        // $token=$user->createToken
+        return response([
+
+            "message" => "Bienvenue"
+        ])->withCookie($cookie);
     }
     public function user()
     {
-
-        return 'user';
+        $user = Auth::user();
+        return response()->json($user);
     }
 }
