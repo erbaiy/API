@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -27,3 +28,9 @@ Route::post('/users', [UserController::class, 'store']);          // Create a ne
 Route::get('/users/{user}', [UserController::class, 'show']);     // Get a specific user
 Route::put('/users/{user}', [UserController::class, 'update']);   // Update a specific user
 Route::delete('/users/{user}', [UserController::class, 'destroy']); // Delete a specific user
+
+
+
+
+Route::get('/cars', [CarController::class, 'index']);
+Route::post('/estimateprix', [CarController::class, 'estimateprix']);

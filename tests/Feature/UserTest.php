@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Car;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -56,4 +57,35 @@ class UserTest extends TestCase
                 ]
             ]);
     }
+
+    // public function testEstimatePrix()
+    // {
+
+    //     $car1 = new Car([
+    //         'marque' => 'Toyota',
+    //         'modele' => 'Corolla',
+    //         'annee' => 2018,
+    //         'prix' => 10000,
+    //     ]);
+    //     $car1->save();
+
+    //     $car2 = new Car([
+    //         'marque' => 'Toyota',
+    //         'modele' => 'Corolla',
+    //         'annee' => 2018,
+    //         'prix' => 12000,
+    //     ]);
+    //     $car2->save();
+
+    //     $response = $this->post('/api/estimateprix', [
+    //         'marque' => 'Toyota',
+    //         'modele' => 'Corolla',
+    //         'annee' => 2018,
+    //     ]);
+
+    //     $response->assertStatus(200)
+    //         ->assertJson([
+    //             'the price pur' => 11000,
+    //         ]);
+    // }
 }
